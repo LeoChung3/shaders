@@ -14,11 +14,20 @@ MyScene::MyScene(GLFWwindow* window, InputHandler* H) : Scene(window, H) {
 											  0.01); // ambient
 	m_directionalLight->setLightUniforms(m_myShader);
 
-
 	m_PointLight = new PointLight(glm::vec3(1.0, 0.0, 0.0), // colour
 								  glm::vec3(0.0, 0.0, 2.0), // position
 								  glm::vec3(1.0, 0.22, 0.02)); // constants
-	m_PointLight->setLightUniforms(m_myShader);
+	m_PointLight->setLightUniforms(m_myShader, "0");
+
+	m_PointLight = new PointLight(glm::vec3(0.0, 1.0, 1.0), // colour
+		glm::vec3(-6.0, 0.0, 0.0), // position
+		glm::vec3(1.0, 0.22, 0.02)); // constants
+	m_PointLight->setLightUniforms(m_myShader, "1");
+
+
+
+
+
 
 
 	m_SpotLight = new SpotLight(glm::vec3(0.0, 1.0, 0.0), // colour
@@ -61,8 +70,15 @@ void MyScene::render() {
 	m_myShader->setVec3("slightPosition", m_camera->getPosition()); // sets the position of the spotlight to the camera
 	m_myShader->setVec3("sDirection", m_camera->getFront()); // sets the direction of the spotlight to the facing front of the camera
 
+
+	m_directionalLight->setLightUniforms(m_myShader);
 	m_myShader->setBool("D_light", m_camera->getD()); // gives the frag the bool of the directional light
+
+	//m_directionalLight2->setLightUniforms(m_myShader);
+	//m_myShader->setBool("D_light2", m_camera->getD()); // gives the frag the bool of the directional light
+
 	m_myShader->setBool("P_light", m_camera->getP()); // gives the frag the bool of the positional light
+
 	m_myShader->setBool("S_light", m_camera->getS()); // gives the frag the bool of the spot light
 
 

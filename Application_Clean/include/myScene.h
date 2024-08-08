@@ -19,6 +19,7 @@ public:
 private:
 	Shader* m_myShader;
 	DirectionalLight* m_directionalLight;
+	DirectionalLight* m_directionalLight2;
 	Cube* m_cube;
 	Cube* m_cube2;
 	PointLight* m_PointLight;

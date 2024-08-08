@@ -66,6 +66,9 @@ void main(){
 	if (P_light == true) // if true, adds point light to result
 	{
 	result += getPointLight(0);
+		result += getPointLight(1);
+
+
 	}
 
 	if (S_light == true) // if true, ads spot light to result
